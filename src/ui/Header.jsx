@@ -1,25 +1,19 @@
 import styled from "styled-components";
-import {
-  HiBars3CenterLeft,
-  HiMiniSun,
-  HiMoon,
-  HiEnvelope,
-  HiBell,
-} from "react-icons/hi2";
+import { HiBars3CenterLeft, HiEnvelope, HiBell } from "react-icons/hi2";
 import Row from "./Row";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import Badge from "./Badge";
 import Avatar from "./Avatar";
+import DarkModeToggle from "./DarkModeToggle";
 
 const StyledHeader = styled.div`
   height: 6rem;
   padding: 1.6rem 2.4rem;
-  background-color: var(--color-brand-800);
-  color: var(--color-grey-200);
+  background-color: var(--color-indigo-100);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--color-grey-800);
 `;
 
 const StyledIcon = styled.div`
@@ -29,6 +23,7 @@ const StyledIcon = styled.div`
   transition: all 0.2s;
   border-radius: 50%;
   border: none;
+  color: var(--color-grey-800);
 
   &:hover {
     color: var(--color-brand-50);
@@ -40,7 +35,6 @@ const StyledIcon = styled.div`
 const StyledNavLink = styled(NavLink)`
   transition: color 0.2s;
   &:hover {
-    color: var(--color-brand-50);
     text-decoration: underline;
   }
 `;
@@ -55,10 +49,6 @@ const StyledRowIcons = styled(Row)`
 `;
 
 function Header({ toggleSidebar }) {
-  const [isDarkMore, setIsDarkMode] = useState(true);
-  function toggleDarkMode() {
-    setIsDarkMode((value) => !value);
-  }
   return (
     <StyledHeader>
       <Row $gap="2rem">
@@ -70,16 +60,7 @@ function Header({ toggleSidebar }) {
         <StyledNavLink to="/settings">Settings</StyledNavLink>
       </Row>
       <StyledRowIcons>
-        {isDarkMore && (
-          <StyledIcon>
-            <HiMiniSun size={24} onClick={toggleDarkMode} />{" "}
-          </StyledIcon>
-        )}
-        {!isDarkMore && (
-          <StyledIcon>
-            <HiMoon size={24} onClick={toggleDarkMode} />
-          </StyledIcon>
-        )}
+        <DarkModeToggle></DarkModeToggle>
         <Badge value={10} state="info">
           <StyledIcon>
             <HiBell size={24} />
@@ -90,7 +71,6 @@ function Header({ toggleSidebar }) {
             <HiEnvelope size={24} />
           </StyledIcon>
         </Badge>
-
         <Avatar />
       </StyledRowIcons>
     </StyledHeader>
