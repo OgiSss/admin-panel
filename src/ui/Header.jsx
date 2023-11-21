@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HiBars3CenterLeft, HiEnvelope, HiBell } from "react-icons/hi2";
 import Row from "./Row";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Badge from "./Badge";
 import Avatar from "./Avatar";
 import DarkModeToggle from "./DarkModeToggle";
@@ -22,7 +22,7 @@ const StyledIcon = styled.div`
   align-items: center;
   transition: all 0.2s;
   border-radius: 50%;
-  border: none;
+  border: 0;
   color: var(--color-grey-800);
 
   &:hover {
@@ -49,6 +49,11 @@ const StyledRowIcons = styled(Row)`
 `;
 
 function Header({ toggleSidebar }) {
+  const navigate = useNavigate();
+  function handleLogOut() {
+    // localStorage.clear("user");
+    // navigate("login");
+  }
   return (
     <StyledHeader>
       <Row $gap="2rem">
@@ -56,7 +61,7 @@ function Header({ toggleSidebar }) {
           <HiBars3CenterLeft size={24} />
         </StyledIcon>
         <StyledNavLink to="/dashboard">Dashboard</StyledNavLink>
-        <StyledNavLink to="/users">Users</StyledNavLink>
+        <StyledNavLink to="/login">Login</StyledNavLink>
         <StyledNavLink to="/settings">Settings</StyledNavLink>
       </Row>
       <StyledRowIcons>

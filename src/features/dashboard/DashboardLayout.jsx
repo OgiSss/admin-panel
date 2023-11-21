@@ -21,7 +21,6 @@ function DashboardLayout() {
         <TodaysActivity />
         <Spinner />
       </StyledTile>
-      {/* <TodayActivity /> */}
       <DurationChart />
       <SalesChart />
     </StyledDashboardLayout>

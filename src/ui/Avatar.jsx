@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import ContextMenu from "./ContextMenu";
 
 const StyledUserAvatar = styled.div`
   display: flex;
-  gap: 1.2rem;
   align-items: center;
   font-weight: 500;
   font-size: 1.4rem;
@@ -15,18 +16,34 @@ const StyledAvatar = styled.img`
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
-  outline: 2px solid var(--color-grey-100);
 `;
 
 function Avatar({ fullName, url }) {
+  const navigate = useNavigate();
+  function handleLogoutClick() {
+    localStorage.removeItem("user");
+    navigate("/login");
+  }
   return (
-    <StyledUserAvatar>
-      <StyledAvatar
-        src={url || "default-user.jpg"}
-        alt={`Avatar of ${fullName}`}
-      />
-      <span>{fullName}</span>
-    </StyledUserAvatar>
+    <>
+      <ContextMenu>
+        <ContextMenu.Toggle id="avatar">
+          <StyledUserAvatar>
+            <StyledAvatar
+              src={url || "default-user.jpg"}
+              alt={`Avatar of ${fullName}`}
+            />
+            <span>{fullName}</span>
+          </StyledUserAvatar>
+        </ContextMenu.Toggle>
+
+        <ContextMenu.List id="avatar">
+          <ContextMenu.Button onClick={handleLogoutClick}>
+            Log out
+          </ContextMenu.Button>
+        </ContextMenu.List>
+      </ContextMenu>
+    </>
   );
 }
 

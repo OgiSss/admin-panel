@@ -25,7 +25,7 @@ function Breadcrumbs() {
 
   return (
     <>
-      {crumbs?.length > 1 && (
+      {crumbs?.length > 0 && (
         <StyledBreadcrumbs>
           {crumbs.map((crumb, index) => (
             <li key={index}>

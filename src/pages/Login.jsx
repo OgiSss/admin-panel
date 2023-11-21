@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import Heading from "../ui/Heading";
+import LoginForm from "../features/authentication/LoginForm";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -11,12 +16,31 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const confirmation = searchParams.get("confirmation");
+
+  const user = localStorage.getItem("user");
+
+  useEffect(() => {
+    if (confirmation) {
+      setTimeout(() => {
+        toast.success("The email has been confirmed");
+      }, 0);
+    }
+  }, [confirmation]);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+
   return (
     <LoginLayout>
-      <h1>Login</h1>
       {/* <Logo /> */}
-      {/* <Heading as="h4">Log in to your account</Heading>
-      <LoginForm /> */}
+      <Heading as="h4">Log in to your account</Heading>
+      <LoginForm />
     </LoginLayout>
   );
 }

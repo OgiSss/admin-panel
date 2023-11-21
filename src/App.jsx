@@ -9,6 +9,11 @@ import AppLayout from "./ui/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Signup from "./pages/Signup";
+import Users from "./pages/Users";
+import ProtectedRoute from "./features/authentication/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,8 +27,11 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
-    replace: "dashboard",
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -33,11 +41,30 @@ const router = createBrowserRouter([
           crumb: () => "Dashboard",
         },
       },
+      {
+        path: "users",
+        element: <Users />,
+        handle: {
+          crumb: () => "Users",
+        },
+      },
     ],
   },
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "sign-up",
+    element: <Signup />,
+  },
+  {
+    path: "forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "reset-password",
+    element: <ResetPassword />,
   },
   {
     path: "*",

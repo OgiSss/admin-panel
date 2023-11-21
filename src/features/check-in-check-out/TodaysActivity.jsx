@@ -20,28 +20,28 @@ function TodaysActivity() {
   return (
     <StyledTodaysActivity>
       <Heading as="h2">Todays activity</Heading>
-      <Divider margin="1rem 0 1rem 0 " />
+      <Divider $margin="1rem 0 1rem 0 " />
       <StyledRow $gap="1rem">
         <Tag>Active</Tag>
         <span>Oskar K</span>
         <span>10 nights</span>
         <Button>Check details</Button>
       </StyledRow>
-      <Divider margin="1rem 0 1rem 0 " />
+      <Divider $margin="1rem 0 1rem 0 " />
       <StyledRow $gap="1rem">
         <Tag>Active</Tag>
         <span>Oskar K</span>
         <span>10 nights</span>
         <Button>Check details</Button>
       </StyledRow>
-      <Divider margin="1rem 0 1rem 0 " />
+      <Divider $margin="1rem 0 1rem 0 " />
       <StyledRow $gap="1rem">
         <Tag>Active</Tag>
         <span>Oskar K</span>
         <span>10 nights</span>
         <Button>Check details</Button>
       </StyledRow>
-      <Divider margin="1rem 0 1rem 0 " />
+      <Divider $margin="1rem 0 1rem 0 " />
     </StyledTodaysActivity>
   );
 }
